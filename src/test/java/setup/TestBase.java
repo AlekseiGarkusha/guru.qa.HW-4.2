@@ -20,6 +20,9 @@
     private static String BASE_URL = "https://demoqa.com";
 
     public static void setUp() {
+      ChromeOptions options = new ChromeOptions();
+      options.addArguments("--remote-allow-origins=*");
+
       Configuration.browser = "chrome";
       Configuration.browserSize = "1920x1080";
       Configuration.headless = false;
@@ -27,9 +30,9 @@
       Configuration.reportsFolder = "target/selenide-reports";
       Configuration.timeout = 5000;
       Configuration.textCheck = TextCheck.FULL_TEXT;
+      Configuration.browserCapabilities = options;
 
-      ChromeOptions options = new ChromeOptions();
-      options.addArguments("--remote-allow-origins=*");
+
     }
 
     @BeforeAll

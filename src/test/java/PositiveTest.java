@@ -31,11 +31,11 @@ public class PositiveTest extends TestBase {
   @Order(2)
   @Description("Переход к форме")
   public void goToPracticeForm() {
-    $x(goToTestForms).shouldBe(visible).click();
+    $x(goToTestForms).click();
     $(byText(clickTestFormsMenu)).scrollIntoView(true).shouldBe(visible).click();
-    $(byText(goToPracticeForm)).shouldBe(visible).click();
+    $(byText(goToPracticeForm)).scrollIntoView(true).shouldBe(visible).click();
 
-    SelenideElement findForm = $(practiceForm).scrollIntoView(true).shouldBe(visible);
+    SelenideElement findForm = $(practiceForm).shouldBe(visible);
     Assertions.assertTrue(findForm.exists(), notFinedPracticeFormTitle);
   }
 
@@ -43,7 +43,6 @@ public class PositiveTest extends TestBase {
   @Order(3)
   @Description("Заполение всех полей")
   public void positiveTest() throws InterruptedException {
-
     $(userFirstName).shouldBe(visible).setValue(expectedUserFirstName);
     $(userLastName).sendKeys(expectedUserLastName);
     $(byText(userGenderMale)).click();
