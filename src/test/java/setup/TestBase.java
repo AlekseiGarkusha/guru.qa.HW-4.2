@@ -8,27 +8,33 @@
 
   import com.codeborne.selenide.Configuration;
   import com.codeborne.selenide.Selenide;
+  import com.codeborne.selenide.TextCheck;
   import org.junit.jupiter.api.AfterAll;
   import org.junit.jupiter.api.BeforeAll;
+  import org.openqa.selenium.chrome.ChromeOptions;
 
   import static com.codeborne.selenide.Selenide.closeWebDriver;
 
-  public class Base{
+  public class TestBase {
 
-    private static String BASE_URL = "https://demoqa.com/automation-practice-form";
+    private static String BASE_URL = "https://demoqa.com";
 
-    public static void setUp(String url) {
+    public static void setUp() {
       Configuration.browser = "chrome";
       Configuration.browserSize = "1920x1080";
       Configuration.headless = false;
-      Configuration.holdBrowserOpen = true;                   /// держать браузер открытым - для отладки
+      Configuration.holdBrowserOpen = true;
       Configuration.reportsFolder = "target/selenide-reports";
       Configuration.timeout = 5000;
+      Configuration.textCheck = TextCheck.FULL_TEXT;
+
+      ChromeOptions options = new ChromeOptions();
+      options.addArguments("--remote-allow-origins=*");
     }
 
     @BeforeAll
     public static void init() {
-      setUp(BASE_URL);
+      setUp();
       Selenide.open(BASE_URL);
     }
 
