@@ -3,12 +3,11 @@
  * - переход к странице формы
  * - проверка на загрузку мормы (нахождение form wrapper)
  * - заполненме всех полей
- * - Проверка на открытие результирующей формы - метод поиска title формы
- * - Сравнение результирующий полей с вводимыми
+ * - проверка на открытие результирующей формы - метод поиска title формы
+ * - сравнение результирующий полей с вводимыми
  */
 
 import com.codeborne.selenide.SelenideElement;
-import jdk.jfr.Description;
 import org.junit.jupiter.api.*;
 import setup.TestBase;
 
@@ -27,7 +26,6 @@ import static data.UserData.*;
 public class PositiveTest extends TestBase {
 
   @Test
-  @Description("Переход к форме")
   public void goToPracticeForm() {
     openForm();
 

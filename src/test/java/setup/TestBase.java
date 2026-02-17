@@ -32,14 +32,11 @@
       Configuration.browserCapabilities = options;
       Configuration.browserSize = "1920x1080";
       Configuration.baseUrl = "https://demoqa.com";
-
-
     }
 
     public void openForm() {
       open(baseUrl);
     }
-
 
     @AfterAll
     public static void tearDown() {
