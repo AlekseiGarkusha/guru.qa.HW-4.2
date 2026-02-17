@@ -24,25 +24,21 @@ import static data.NavData.*;
 import static data.NavData.goToPracticeForm;
 import static data.UserData.*;
 
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class PositiveTest extends TestBase {
 
   @Test
-  @Order(2)
   @Description("Переход к форме")
   public void goToPracticeForm() {
+    openForm();
+
     $x(goToTestForms).click();
     $(byText(clickTestFormsMenu)).scrollIntoView(true).shouldBe(visible).click();
     $(byText(goToPracticeForm)).scrollIntoView(true).shouldBe(visible).click();
 
     SelenideElement findForm = $(practiceForm).shouldBe(visible);
     Assertions.assertTrue(findForm.exists(), notFinedPracticeFormTitle);
-  }
 
-  @Test
-  @Order(3)
-  @Description("Заполение всех полей")
-  public void positiveTest() throws InterruptedException {
+    // Заполенние всех полей
     $(userFirstName).shouldBe(visible).setValue(expectedUserFirstName);
     $(userLastName).sendKeys(expectedUserLastName);
     $(byText(userGenderMale)).click();
@@ -70,13 +66,8 @@ public class PositiveTest extends TestBase {
     $(byText(userCityNoida)).shouldBe(visible).click();
 
     $(btnSubmit).click();
-  }
 
-  @Test
-  @Order(4)
-  @Description("Проверка на соответсвиет полей")
-  public void comparisonFields() {
-
+    //Проверка на соответсвиет полей")
     SelenideElement formResult = $(byText(resultFormTitle));
     Assertions.assertTrue(formResult.exists(), notFinedResultFormTitle);
 
@@ -95,5 +86,4 @@ public class PositiveTest extends TestBase {
 
     $$(resultFormDataActualList).shouldHave(texts(expectedValues));
   }
-
 }
